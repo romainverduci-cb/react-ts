@@ -1,0 +1,22 @@
+---
+apiVersion: featuremanagement.cloudbees.io/v1alpha1
+kind: flag-configuration
+
+flag: string-flag
+
+enabled: false
+
+stickinessProperty: rox.distinct_id
+
+defaultValue:
+  valueWrittenInCode: true
+
+conditions:
+  - allOf:
+      - property:
+          name: string-prop
+          operator: in-array
+          operands:
+            - "1"
+    flagValue:
+      valueWrittenInCode: true
