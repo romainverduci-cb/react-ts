@@ -13,3 +13,14 @@ jobs:
         shell: sh
         run: |
           echo "hello world"
+    needs:
+      - Approval-needed
+  Approval-needed:
+    timeout-minutes: 4320
+    delegates: cloudbees-io/manual-approval/custom-job.yml@v1
+    with:
+      approvers: 803676f8-f9bc-11ea-a27d-42010a83ae35,5f2ef83c-03d4-11eb-9d67-42010a83ae35,4487d252-3709-11f0-b043-42010a83ae54
+      disallowLaunchByUser: false
+      instructions: Please approve this workflow
+      approvalInputs: |
+        {}
